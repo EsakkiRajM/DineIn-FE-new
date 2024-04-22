@@ -16,11 +16,15 @@ import {
   CardActions,
 } from "@mui/material";
 
-export default function HotelList() {
+export default function HotelList({ location = "" }) {
+  const urlLocation = location ? location.toLowerCase() : "delhi";
+
+  const restaurentData = restaurant[urlLocation];
+
   return (
     <Grid item>
       <Grid container flexDirection={"row"} rowGap={2} columnGap={2}>
-        {restaurant.delhi.map((hotel, index) => {
+        {restaurentData.map((hotel, index) => {
           const { image, ratings, location, priceDetail, name, tags } = hotel;
           return (
             <Grid rowGap={2} columnGap={2} key={index}>

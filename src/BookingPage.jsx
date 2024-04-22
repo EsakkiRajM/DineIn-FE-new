@@ -19,8 +19,28 @@ import Filter from "./Filter";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 import HotelList from "./HotelList";
-
+import { useParams } from "react-router-dom";
 function BookingPage() {
+  const { location = "Delhi" } = useParams();
+
+  const breadcrumbs = [
+    <Grid underline="hover" key="1" color="inherit" href="/" onClick={() => {}}>
+      Location
+    </Grid>,
+    <Grid
+      underline="hover"
+      key="2"
+      color="inherit"
+      href="/material-ui/getting-started/installation/"
+      onClick={() => {}}
+    >
+      {location} City
+    </Grid>,
+    <Typography key="3" color="text.primary">
+      {location}
+    </Typography>,
+  ];
+
   return (
     <Grid
       container
@@ -51,16 +71,16 @@ function BookingPage() {
           >
             <Grid item>
               <Typography variant="h3" fontSize={30}>
-                Best Restaurants Near Me in Chennai 20953
+                Best Restaurants Near Me in {location}
               </Typography>
             </Grid>
 
             <Grid item>
               <Grid container alignItems={"center"} spacing={2}>
                 <Grid item>
-                  <Typography variant="h5" fontSize={20}>
+                  {/* <Typography variant="h5" fontSize={20}>
                     Sort
-                  </Typography>
+                  </Typography> */}
                 </Grid>
 
                 <Grid item>
@@ -70,7 +90,7 @@ function BookingPage() {
                     options={sortData}
                     sx={{ width: 150 }}
                     renderInput={(params) => (
-                      <TextField {...params} label="Movie" />
+                      <TextField {...params} label="Sort" />
                     )}
                   />
                 </Grid>
@@ -79,36 +99,17 @@ function BookingPage() {
           </Grid>
         </Grid>
         <Grid item paddingTop={4}>
-          <HotelList />
+          <HotelList location={location} />
         </Grid>
       </Grid>
     </Grid>
   );
 }
 
-const breadcrumbs = [
-  <Grid underline="hover" key="1" color="inherit" href="/" onClick={() => {}}>
-    MUI
-  </Grid>,
-  <Grid
-    underline="hover"
-    key="2"
-    color="inherit"
-    href="/material-ui/getting-started/installation/"
-    onClick={() => {}}
-  >
-    Core
-  </Grid>,
-  <Typography key="3" color="text.primary">
-    Breadcrumb
-  </Typography>,
-];
-
 const sortData = [
   { label: "Ratings", key: 1994 },
   { label: "Price High to Low", key: 1972 },
   { label: "Price Low to High", key: 1974 },
-  { label: "Popularity", key: 1975 },
 ];
 
 export default BookingPage;

@@ -10,7 +10,17 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import { useNavigate } from "react-router-dom";
 
+import LoginModal from "./LoginModal";
+import { useState } from "react";
+
 export default function Navbar() {
+  const [openType, setOpenType] = useState("");
+
+  // open -> true / false
+  // open -> 1 / 0
+  // openType -> 2 / 1 / 0
+  // openType -> registration / login / false
+
   const navigate = useNavigate();
 
   return (
@@ -60,12 +70,24 @@ export default function Navbar() {
           />
         </Grid>
         <Grid item>
-          <Button variant="outlined" size="medium">
+          <Button
+            variant="outlined"
+            size="medium"
+            onClick={() => {
+              setOpenType("login");
+            }}
+          >
             Login
           </Button>
         </Grid>
         <Grid item>
-          <Button variant="outlined" size="medium">
+          <Button
+            variant="outlined"
+            size="medium"
+            onClick={() => {
+              setOpenType("register");
+            }}
+          >
             Register
           </Button>
         </Grid>
@@ -84,6 +106,8 @@ export default function Navbar() {
           <Button variant="text">Blog</Button>
         </Grid>
       </Grid>
+
+      <LoginModal openType={openType} setOpenType={setOpenType} />
     </AppBar>
   );
 }

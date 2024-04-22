@@ -20,7 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<BasicPage />}></Route> */}
+        <Route path="/:location" element={<BasicPage />}></Route>
         <Route path="*" element={<BasicPage />}></Route>
       </Routes>
     </BrowserRouter>
