@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Grid,
   Typography,
@@ -16,18 +17,33 @@ import {
   CardActions,
 } from "@mui/material";
 
+import BookingModal from "./BookingModal";
+
 export default function HotelList({ location = "" }) {
+  const [selectedRestaurentId, setSelectedRestaurentId] = useState("");
+
   const urlLocation = location ? location.toLowerCase() : "delhi";
 
   const restaurentData = restaurant[urlLocation];
+
+  const handleCardClick = (restaurentId) => {
+    setSelectedRestaurentId(restaurentId);
+  };
 
   return (
     <Grid item>
       <Grid container flexDirection={"row"} rowGap={2} columnGap={2}>
         {restaurentData.map((hotel, index) => {
-          const { image, ratings, location, priceDetail, name, tags } = hotel;
+          const { image, ratings, location, priceDetail, name, tags, id } =
+            hotel;
           return (
-            <Grid rowGap={2} columnGap={2} key={index}>
+            <Grid
+              onClick={() => handleCardClick(id)}
+              style={{ cursor: "pointer" }}
+              rowGap={2}
+              columnGap={2}
+              key={index}
+            >
               <Card sx={{ maxWidth: 345 }}>
                 <div style={{ position: "relative" }}>
                   <CardMedia
@@ -66,6 +82,11 @@ export default function HotelList({ location = "" }) {
           );
         })}
       </Grid>
+
+      <BookingModal
+        setSelectedRestaurentId={setSelectedRestaurentId}
+        selectedRestaurentId={selectedRestaurentId}
+      />
     </Grid>
   );
 }
