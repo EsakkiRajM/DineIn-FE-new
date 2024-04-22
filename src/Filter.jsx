@@ -16,9 +16,21 @@ import {
 } from "@mui/material";
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
-export default function Filter() {
+// eslint-disable-next-line react/prop-types
+export default function Filter({ filteredTags = [], setFilteredTags }) {
+  const handleFilterChange = (event) => {
+    if (event.target.checked) {
+      setFilteredTags([...filteredTags, event.target.value]);
+    } else {
+      const filteredItem = filteredTags.filter(
+        (filter) => filter != event.target.value
+      );
+
+      setFilteredTags(filteredItem);
+    }
+  };
+
   return (
     <div style={{ width: "100%" }}>
       <Accordion defaultExpanded>
@@ -34,8 +46,11 @@ export default function Filter() {
             {quickFilter.map((filter, index) => (
               <FormControlLabel
                 key={index}
+                name={filter}
                 control={<Checkbox />}
                 label={filter}
+                value={filter}
+                onChange={handleFilterChange}
               />
             ))}
           </FormGroup>

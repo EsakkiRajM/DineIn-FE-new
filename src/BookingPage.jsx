@@ -20,8 +20,12 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 
 import HotelList from "./HotelList";
 import { useParams } from "react-router-dom";
+
+import React, { useState } from "react";
 function BookingPage() {
   const { location = "Delhi" } = useParams();
+
+  const [filteredTags, setFilteredTags] = React.useState([]);
 
   const breadcrumbs = [
     <Grid underline="hover" key="1" color="inherit" href="/" onClick={() => {}}>
@@ -51,7 +55,7 @@ function BookingPage() {
       spacing={4}
     >
       <Grid item lg={3}>
-        <Filter />
+        <Filter filteredTags={filteredTags} setFilteredTags={setFilteredTags} />
       </Grid>
 
       <Grid item lg={9}>
