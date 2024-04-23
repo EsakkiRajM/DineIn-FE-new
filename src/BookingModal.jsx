@@ -34,15 +34,17 @@ import { useState } from "react";
 import axios from "axios";
 import { apiuri } from "./constants";
 
+const defaultState = {
+  selectedTime: "",
+  selectedSeats: 0,
+  selectedDate: "",
+};
+
 export default function BookingModal({
   selectedRestaurentId,
   setSelectedRestaurentId,
 }) {
-  const [bookingDetails, setBookingDetails] = useState({
-    selectedTime: "",
-    selectedSeats: 0,
-    selectedDate: "",
-  });
+  const [bookingDetails, setBookingDetails] = useState(defaultState);
 
   const username = localStorage.getItem("login") || "";
 
@@ -102,6 +104,7 @@ export default function BookingModal({
 
       if (apiResponse.data?._id) {
         setSelectedRestaurentId("");
+        setBookingDetails(defaultState);
         alert("Booking Success");
       }
     }
@@ -111,7 +114,10 @@ export default function BookingModal({
     <div>
       <Modal
         open={selectedRestaurentId}
-        onClose={() => setSelectedRestaurentId("")}
+        onClose={() => {
+          setSelectedRestaurentId("");
+          setBookingDetails(defaultState);
+        }}
       >
         <ModalDialog
           style={{
