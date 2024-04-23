@@ -1,4 +1,7 @@
-export const apiuri = `http://localhost:4000`;
+export const apiuri =
+  import.meta.VITE_LOCAL_URL === "production"
+    ? "https://dinein-node.onrender.com"
+    : `http://localhost:4000`;
 
 export const sortData = [
   { label: "Ratings", key: 1994 },
@@ -84,23 +87,23 @@ export const tagsFilter = [
 ];
 
 export const chipdata = {
-    morning: [
-      { key: 0, label: "9 AM - 10 AM" },
-      { key: 1, label: "10 AM - 11 AM" },
-      { key: 2, label: "11 AM - 12 AM" },
-    ],
-    afternoon: [
-      { key: 3, label: "12 PM - 1 PM" },
-      { key: 4, label: "1 PM - 2 PM" },
-    ],
-    dinner: [
-      { key: 5, label: "6 PM - 7 PM" },
-      { key: 6, label: "7 PM - 8 PM" },
-      { key: 7, label: "8 PM - 9 PM" },
-      { key: 8, label: "9 PM - 10 PM" },
-      { key: 9, label: "10 PM - 11 PM" },
-    ],
-  };
+  morning: [
+    { key: 0, label: "9 AM - 10 AM" },
+    { key: 1, label: "10 AM - 11 AM" },
+    { key: 2, label: "11 AM - 12 AM" },
+  ],
+  afternoon: [
+    { key: 3, label: "12 PM - 1 PM" },
+    { key: 4, label: "1 PM - 2 PM" },
+  ],
+  dinner: [
+    { key: 5, label: "6 PM - 7 PM" },
+    { key: 6, label: "7 PM - 8 PM" },
+    { key: 7, label: "8 PM - 9 PM" },
+    { key: 8, label: "9 PM - 10 PM" },
+    { key: 9, label: "10 PM - 11 PM" },
+  ],
+};
 
 export const restaurant = {
   delhi: [
