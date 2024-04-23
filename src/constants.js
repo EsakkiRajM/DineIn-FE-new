@@ -1,5 +1,5 @@
 export const apiuri =
-  import.meta.VITE_LOCAL_URL === "production"
+  import.meta.env.VITE_LOCAL_URL === "production"
     ? "https://dinein-node.onrender.com"
     : `http://localhost:4000`;
 
