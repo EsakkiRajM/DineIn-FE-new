@@ -63,7 +63,6 @@ export default function LoginModal({ openType, setOpenType }) {
                 variant="standard"
                 fullWidth
                 onChange={(event) => {
-                  console.log(event.target.value);
                   setFormState({
                     ...formState,
                     username: event.target.value,

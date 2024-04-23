@@ -32,7 +32,7 @@ export default function HotelList({ location = "" }) {
 
   return (
     <Grid item>
-      <Grid container flexDirection={"row"} rowGap={2} columnGap={2}>
+      <Grid container flexDirection={"row"} rowGap={1} columnGap={1}>
         {restaurentData.map((hotel, index) => {
           const { image, ratings, location, priceDetail, name, tags, id } =
             hotel;

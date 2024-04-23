@@ -54,7 +54,7 @@ function BookingPage() {
       }}
       spacing={4}
     >
-      <Grid item lg={3}>
+      <Grid item lg={2}>
         <Filter filteredTags={filteredTags} setFilteredTags={setFilteredTags} />
       </Grid>
 
