@@ -13,6 +13,8 @@ import {
   InputAdornment,
 } from "@mui/material";
 
+import axios from "axios";
+
 // eslint-disable-next-line react/prop-types
 export default function LoginModal({ openType, setOpenType }) {
   const [formState, setFormState] = useState({
@@ -21,14 +23,30 @@ export default function LoginModal({ openType, setOpenType }) {
     confirmpassword: "",
     phonenumber: "",
     emailaddress: "",
-    age: 0,
   });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (openType === "login") {
-      // alert("login");
+      const apiResponse = await axios.get(
+        `http://localhost:4000/login/${formState.username}/${formState.password}`
+      );
+      if (apiResponse.data && apiResponse.data != "Login Failed") {
+        localStorage.setItem("login", apiResponse.data);
+        setOpenType("");
+        return;
+      }
+      alert("Login Failed");
     } else {
-      // alert("Register");
+      const apiResponse = await axios.post(
+        "http://localhost:4000/registration",
+        {
+          ...formState,
+        }
+      );
+      console.log(apiResponse.data, "apiResponse.");
+      if (apiResponse.data._id) {
+        setOpenType("");
+      }
     }
   };
 

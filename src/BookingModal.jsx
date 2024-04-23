@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Grid,
   Typography,
@@ -30,6 +31,8 @@ import TimeSlot from "./TimeSlot";
 
 import { useState } from "react";
 
+import axios from "axios";
+
 export default function BookingModal({
   selectedRestaurentId,
   setSelectedRestaurentId,
@@ -39,6 +42,8 @@ export default function BookingModal({
     selectedSeats: 0,
     selectedDate: "",
   });
+
+  const username = localStorage.getItem("login") || "";
 
   const handleSliderChange = (event) => {
     setBookingDetails({
@@ -67,6 +72,41 @@ export default function BookingModal({
       ...bookingDetails,
       selectedDate: bookingData,
     });
+  };
+
+  const handleSubmit = async () => {
+    const { selectedDate, selectedSeats, selectedTime } = bookingDetails;
+
+    console.log({
+      selectedTime,
+      selectedSeats,
+      selectedDate,
+      username,
+      selectedRestaurentId,
+    });
+    if (
+      selectedDate?.length &&
+      selectedSeats &&
+      selectedTime?.length &&
+      username?.length &&
+      selectedRestaurentId?.length
+    ) {
+      const apiResponse = await axios.post(
+        `http://localhost:4000/createBooking`,
+        {
+          selectedTime,
+          selectedSeats,
+          selectedDate,
+          username,
+          restaurentId: selectedRestaurentId,
+        }
+      );
+
+      if (apiResponse.data?._id) {
+        setSelectedRestaurentId("");
+        alert("Booking Success");
+      }
+    }
   };
 
   return (
@@ -185,7 +225,7 @@ export default function BookingModal({
                 <Button
                   variant="solid"
                   color="primary"
-                  //   onClick={() => handleSubmit()}
+                  onClick={() => handleSubmit()}
                 >
                   Make A Booking
                 </Button>

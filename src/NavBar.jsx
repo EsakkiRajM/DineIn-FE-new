@@ -16,12 +16,19 @@ import { useState } from "react";
 export default function Navbar() {
   const [openType, setOpenType] = useState("");
 
+  const username = localStorage.getItem("login") || "";
+
   // open -> true / false
   // open -> 1 / 0
   // openType -> 2 / 1 / 0
   // openType -> registration / login / false
 
   const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.setItem("login", "");
+    window.location.reload();
+  };
 
   return (
     <AppBar color="transparent" position="static">
@@ -69,28 +76,52 @@ export default function Navbar() {
             placeholder="Enter the name of restaurent"
           />
         </Grid>
-        <Grid item>
-          <Button
-            variant="outlined"
-            size="medium"
-            onClick={() => {
-              setOpenType("login");
-            }}
-          >
-            Login
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button
-            variant="outlined"
-            size="medium"
-            onClick={() => {
-              setOpenType("register");
-            }}
-          >
-            Register
-          </Button>
-        </Grid>
+
+        {!username ? (
+          <>
+            <Grid item>
+              <Button
+                variant="outlined"
+                size="medium"
+                onClick={() => {
+                  setOpenType("login");
+                }}
+              >
+                Login
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="outlined"
+                size="medium"
+                onClick={() => {
+                  setOpenType("register");
+                }}
+              >
+                Register
+              </Button>
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item>
+              <Button variant="outlined" size="medium" onClick={() => {}}>
+                Booking
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant="outlined"
+                size="medium"
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Logout
+              </Button>
+            </Grid>
+          </>
+        )}
       </Grid>
 
       <div style={{ border: "1px solid rgb(199 199 199 / 40%)" }}></div>
