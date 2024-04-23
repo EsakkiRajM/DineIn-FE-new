@@ -11,10 +11,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 
 import LoginModal from "./LoginModal";
+import { MyBookingModal } from "./MyBookingModal";
 import { useState } from "react";
 
 export default function Navbar() {
   const [openType, setOpenType] = useState("");
+  const [showMyBookingModal, setShowMyBookingModal] = useState(false);
 
   const username = localStorage.getItem("login") || "";
 
@@ -28,6 +30,10 @@ export default function Navbar() {
   const handleLogout = () => {
     localStorage.setItem("login", "");
     window.location.reload();
+  };
+
+  const handleMyBookings = () => {
+    setShowMyBookingModal(true);
   };
 
   return (
@@ -105,8 +111,12 @@ export default function Navbar() {
         ) : (
           <>
             <Grid item>
-              <Button variant="outlined" size="medium" onClick={() => {}}>
-                Booking
+              <Button
+                variant="outlined"
+                size="medium"
+                onClick={handleMyBookings}
+              >
+                My Booking
               </Button>
             </Grid>
             <Grid item>
@@ -139,6 +149,13 @@ export default function Navbar() {
       </Grid>
 
       <LoginModal openType={openType} setOpenType={setOpenType} />
+
+      {showMyBookingModal && (
+        <MyBookingModal
+          showMyBookingModal={showMyBookingModal}
+          setShowMyBookingModal={setShowMyBookingModal}
+        />
+      )}
     </AppBar>
   );
 }
