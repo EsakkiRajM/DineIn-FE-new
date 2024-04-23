@@ -45,6 +45,7 @@ export default function BookingModal({
   setSelectedRestaurentId,
 }) {
   const [bookingDetails, setBookingDetails] = useState(defaultState);
+  const [selectedSlotsForDate, setSelectedSlotsForDate] = useState([]);
 
   const username = localStorage.getItem("login") || "";
 
@@ -62,7 +63,7 @@ export default function BookingModal({
     });
   };
 
-  const handleDateChange = (value) => {
+  const handleDateChange = async (value) => {
     console.log(value, "value");
 
     const day = new Date(value).getDate();
@@ -75,6 +76,13 @@ export default function BookingModal({
       ...bookingDetails,
       selectedDate: bookingData,
     });
+
+    if (bookingData) {
+      const response = await axios.get(
+        `${apiuri}/bookedSlots/${selectedRestaurentId}/${bookingData}`
+      );
+      setSelectedSlotsForDate(response.data);
+    }
   };
 
   const handleSubmit = async () => {
@@ -105,6 +113,7 @@ export default function BookingModal({
       if (apiResponse.data?._id) {
         setSelectedRestaurentId("");
         setBookingDetails(defaultState);
+        setSelectedSlotsForDate([]);
         alert("Booking Success");
       }
     }
@@ -117,6 +126,7 @@ export default function BookingModal({
         onClose={() => {
           setSelectedRestaurentId("");
           setBookingDetails(defaultState);
+          setSelectedSlotsForDate([]);
         }}
       >
         <ModalDialog
@@ -213,6 +223,7 @@ export default function BookingModal({
               <TimeSlot
                 onTimeClick={onTimeClick}
                 selectedTime={bookingDetails.selectedTime}
+                selectedSlotsForDate={selectedSlotsForDate}
               />
             </Grid>
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -8,7 +9,11 @@ import { Chip, Grid } from "@mui/material";
 
 import { chipdata } from "./constants";
 
-export default function TimeSlot({ onTimeClick, selectedTime }) {
+export default function TimeSlot({
+  onTimeClick,
+  selectedTime,
+  selectedSlotsForDate,
+}) {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
@@ -42,6 +47,7 @@ export default function TimeSlot({ onTimeClick, selectedTime }) {
                     color={
                       selectedTime === eachSlot.label ? "success" : "default"
                     }
+                    disabled={selectedSlotsForDate?.includes(eachSlot.label)}
                     label={eachSlot.label}
                     onClick={() => {
                       onTimeClick(eachSlot.label);
@@ -66,6 +72,7 @@ export default function TimeSlot({ onTimeClick, selectedTime }) {
               return (
                 <Grid key={eachSlot.key} item>
                   <Chip
+                    disabled={selectedSlotsForDate?.includes(eachSlot.label)}
                     color={
                       selectedTime === eachSlot.label ? "success" : "default"
                     }
@@ -93,6 +100,7 @@ export default function TimeSlot({ onTimeClick, selectedTime }) {
               return (
                 <Grid key={eachSlot.key} item>
                   <Chip
+                    disabled={selectedSlotsForDate?.includes(eachSlot.label)}
                     color={
                       selectedTime === eachSlot.label ? "success" : "default"
                     }
