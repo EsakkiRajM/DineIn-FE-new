@@ -32,6 +32,7 @@ import TimeSlot from "./TimeSlot";
 import { useState } from "react";
 
 import axios from "axios";
+import { apiuri } from "./constants";
 
 export default function BookingModal({
   selectedRestaurentId,
@@ -91,16 +92,13 @@ export default function BookingModal({
       username?.length &&
       selectedRestaurentId?.length
     ) {
-      const apiResponse = await axios.post(
-        `http://localhost:4000/createBooking`,
-        {
-          selectedTime,
-          selectedSeats,
-          selectedDate,
-          username,
-          restaurentId: selectedRestaurentId,
-        }
-      );
+      const apiResponse = await axios.post(`${apiuri}/createBooking`, {
+        selectedTime,
+        selectedSeats,
+        selectedDate,
+        username,
+        restaurentId: selectedRestaurentId,
+      });
 
       if (apiResponse.data?._id) {
         setSelectedRestaurentId("");

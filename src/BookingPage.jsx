@@ -22,6 +22,9 @@ import HotelList from "./HotelList";
 import { useParams } from "react-router-dom";
 
 import React, { useState } from "react";
+
+import { sortData } from "./constants";
+
 function BookingPage() {
   const { location = "Delhi" } = useParams();
 
@@ -109,11 +112,5 @@ function BookingPage() {
     </Grid>
   );
 }
-
-const sortData = [
-  { label: "Ratings", key: 1994 },
-  { label: "Price High to Low", key: 1972 },
-  { label: "Price Low to High", key: 1974 },
-];
 
 export default BookingPage;

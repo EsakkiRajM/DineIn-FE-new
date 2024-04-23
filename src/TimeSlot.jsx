@@ -6,30 +6,13 @@ import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import { Chip, Grid } from "@mui/material";
 
+import { chipdata } from "./constants";
+
 export default function TimeSlot({ onTimeClick, selectedTime }) {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const chipdata = {
-    morning: [
-      { key: 0, label: "9 AM - 10 AM" },
-      { key: 1, label: "10 AM - 11 AM" },
-      { key: 2, label: "11 AM - 12 AM" },
-    ],
-    afternoon: [
-      { key: 3, label: "12 PM - 1 PM" },
-      { key: 4, label: "1 PM - 2 PM" },
-    ],
-    dinner: [
-      { key: 5, label: "6 PM - 7 PM" },
-      { key: 6, label: "7 PM - 8 PM" },
-      { key: 7, label: "8 PM - 9 PM" },
-      { key: 8, label: "9 PM - 10 PM" },
-      { key: 9, label: "10 PM - 11 PM" },
-    ],
   };
 
   return (

@@ -15,6 +15,8 @@ import {
 
 import axios from "axios";
 
+import { apiuri } from "./constants";
+
 // eslint-disable-next-line react/prop-types
 export default function LoginModal({ openType, setOpenType }) {
   const [formState, setFormState] = useState({
@@ -28,7 +30,7 @@ export default function LoginModal({ openType, setOpenType }) {
   const handleSubmit = async () => {
     if (openType === "login") {
       const apiResponse = await axios.get(
-        `http://localhost:4000/login/${formState.username}/${formState.password}`
+        `${apiuri}/login/${formState.username}/${formState.password}`
       );
       if (apiResponse.data && apiResponse.data != "Login Failed") {
         localStorage.setItem("login", apiResponse.data);
@@ -37,12 +39,9 @@ export default function LoginModal({ openType, setOpenType }) {
       }
       alert("Login Failed");
     } else {
-      const apiResponse = await axios.post(
-        "http://localhost:4000/registration",
-        {
-          ...formState,
-        }
-      );
+      const apiResponse = await axios.post(`${apiuri}/registration`, {
+        ...formState,
+      });
       console.log(apiResponse.data, "apiResponse.");
       if (apiResponse.data._id) {
         setOpenType("");
