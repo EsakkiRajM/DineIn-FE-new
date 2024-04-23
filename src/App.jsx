@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const BasicPage = () => {
-    console.log(process.env, "process");
+    console.log(import.meta.url, "process");
     return (
       <Grid item>
         <Navbar />
