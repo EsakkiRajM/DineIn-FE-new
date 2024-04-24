@@ -1,20 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Grid, Typography, Card, CardMedia, CardContent } from "@mui/material";
 
 import BookingModal from "./BookingModal";
 
 import { restaurant } from "./constants";
+import { AppContext } from "./Context";
 
 export default function HotelList({
   location = "",
   filteredTags = [],
   selectedSort = "",
 }) {
+  const { searchedHotel } = useContext(AppContext);
+
   const [selectedRestaurentId, setSelectedRestaurentId] = useState("");
-
   const urlLocation = location ? location.toLowerCase() : "delhi";
-
   let restaurentData = restaurant[urlLocation];
 
   // filteredTags = ['5 start','sea food']
@@ -97,8 +98,15 @@ export default function HotelList({
     restaurentData.sort((a, b) => callback(a, b, selectedSort));
   }
 
-
-  
+  // filter searched hotel
+  if (searchedHotel?.length) {
+    restaurentData = restaurentData.filter((eachHotel) => {
+      if (eachHotel.name.toLowerCase().includes(searchedHotel.toLowerCase())) {
+        return true;
+      }
+      return false;
+    });
+  }
 
   const handleCardClick = (restaurentId) => {
     setSelectedRestaurentId(restaurentId);

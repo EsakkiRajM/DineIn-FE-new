@@ -12,13 +12,16 @@ import { useNavigate } from "react-router-dom";
 
 import LoginModal from "./LoginModal";
 import { MyBookingModal } from "./MyBookingModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "./Context";
 
 export default function Navbar() {
   const [openType, setOpenType] = useState("");
   const [showMyBookingModal, setShowMyBookingModal] = useState(false);
 
   const username = localStorage.getItem("login") || "";
+
+  const { setSearchedHotel } = useContext(AppContext);
 
   // open -> true / false
   // open -> 1 / 0
@@ -37,7 +40,7 @@ export default function Navbar() {
   };
 
   const handleNameChange = (event) => {
-    console.log(event.target.value, "event");
+    setSearchedHotel(event.target.value);
   };
 
   return (

@@ -1,16 +1,23 @@
 import { Grid } from "@mui/material";
 import Navbar from "./NavBar";
 import BookingPage from "./BookingPage";
+import { AppProvider } from "./Context";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import React from "react";
+
 function App() {
   const BasicPage = () => {
+    const [searchedHotel, setSearchedHotel] = React.useState("");
+
     return (
-      <Grid item>
-        <Navbar />
-        <BookingPage />
-      </Grid>
+      <AppProvider value={{ searchedHotel, setSearchedHotel }}>
+        <Grid item>
+          <Navbar />
+          <BookingPage />
+        </Grid>
+      </AppProvider>
     );
   };
 
