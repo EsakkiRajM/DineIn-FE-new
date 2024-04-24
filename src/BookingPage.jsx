@@ -1,18 +1,9 @@
 import {
   Grid,
   Typography,
-  AppBar,
   Autocomplete,
   TextField,
-  InputAdornment,
-  Button,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Breadcrumbs,
-  FormGroup,
-  FormControlLabel,
-  Checkbox,
 } from "@mui/material";
 
 import Filter from "./Filter";
@@ -21,7 +12,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import HotelList from "./HotelList";
 import { useParams } from "react-router-dom";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { sortData } from "./constants";
 

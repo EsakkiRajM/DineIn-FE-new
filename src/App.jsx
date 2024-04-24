@@ -1,7 +1,4 @@
-import { useState } from "react";
-
-// import "./App.css";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import Navbar from "./NavBar";
 import BookingPage from "./BookingPage";
 

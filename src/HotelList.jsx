@@ -1,21 +1,5 @@
-import React, { useState } from "react";
-import {
-  Grid,
-  Typography,
-  AppBar,
-  Autocomplete,
-  TextField,
-  InputAdornment,
-  Button,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Breadcrumbs,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-} from "@mui/material";
+import { useState } from "react";
+import { Grid, Typography, Card, CardMedia, CardContent } from "@mui/material";
 
 import BookingModal from "./BookingModal";
 

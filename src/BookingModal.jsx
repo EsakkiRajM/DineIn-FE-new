@@ -1,20 +1,5 @@
 /* eslint-disable react/prop-types */
-import {
-  Grid,
-  Typography,
-  AppBar,
-  Autocomplete,
-  TextField,
-  InputAdornment,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Breadcrumbs,
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-} from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import Button from "@mui/joy/Button";
 import Box from "@mui/joy/Box";
