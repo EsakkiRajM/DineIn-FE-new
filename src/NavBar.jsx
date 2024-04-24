@@ -5,6 +5,7 @@ import {
   TextField,
   InputAdornment,
   Button,
+  Typography,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -12,16 +13,34 @@ import { useNavigate } from "react-router-dom";
 
 import LoginModal from "./LoginModal";
 import { MyBookingModal } from "./MyBookingModal";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./Context";
+import axios from "axios";
+// import { restaurant } from "./constants";
 
 export default function Navbar() {
   const [openType, setOpenType] = useState("");
   const [showMyBookingModal, setShowMyBookingModal] = useState(false);
+  const [currentTemp, setcurrentTemp] = useState("");
 
   const username = localStorage.getItem("login") || "";
-
   const { setSearchedHotel } = useContext(AppContext);
+
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get(
+        `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/kolkata?unitGroup=metric&key=B4BF5KDBZLANUDB2J4P63HVQK&contentType=json`
+      );
+      if (response?.data?.currentConditions?.temp) {
+        setcurrentTemp(response.data.currentConditions.temp);
+      }
+    })();
+  }, []);
+
+  // const hotelNames = restaurant.delhi.map((ele) => {
+  //   return { label: ele.name, id: Math.random() };
+  // });
+  // console.log(hotelNames, "hotelNames");
 
   // open -> true / false
   // open -> 1 / 0
@@ -140,6 +159,10 @@ export default function Navbar() {
             </Grid>
           </>
         )}
+
+        <Grid item>
+          <Typography variant="caption">{currentTemp} C</Typography>
+        </Grid>
       </Grid>
 
       <div style={{ border: "1px solid rgb(199 199 199 / 40%)" }}></div>

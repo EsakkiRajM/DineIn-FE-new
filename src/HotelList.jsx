@@ -15,6 +15,9 @@ export default function HotelList({
   const { searchedHotel } = useContext(AppContext);
 
   const [selectedRestaurentId, setSelectedRestaurentId] = useState("");
+  /* load more */
+  // const [slicedValue, setSlicedValue] = useState(5);
+
   const urlLocation = location ? location.toLowerCase() : "delhi";
   let restaurentData = restaurant[urlLocation];
 
@@ -116,6 +119,8 @@ export default function HotelList({
     <Grid item>
       <Grid container flexDirection={"row"} rowGap={1} columnGap={1}>
         {restaurentData.map((hotel, index) => {
+          /* load more */
+          // {restaurentData.slice(0, slicedValue).map((hotel, index) => {
           const { image, ratings, location, priceDetail, name, tags, id } =
             hotel;
           return (
@@ -163,6 +168,21 @@ export default function HotelList({
             </Grid>
           );
         })}
+        {/* load more */}
+        {/* <Grid
+          onClick={() => setSlicedValue(slicedValue + 5)}
+          style={{ cursor: "pointer" }}
+          rowGap={2}
+          columnGap={2}
+        >
+          <Card sx={{ maxWidth: 345, boxShadow: "none" }}>
+            <CardMedia
+              sx={{ height: 275, width: 300 }}
+              image={"https://cdn-icons-png.freepik.com/512/6741/6741075.png"}
+              title="green iguana"
+            />
+          </Card>
+        </Grid> */}
       </Grid>
 
       <BookingModal
