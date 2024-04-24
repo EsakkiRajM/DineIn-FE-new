@@ -36,6 +36,10 @@ export default function Navbar() {
     setShowMyBookingModal(true);
   };
 
+  const handleNameChange = (event) => {
+    console.log(event.target.value, "event");
+  };
+
   return (
     <AppBar color="transparent" position="static">
       <Grid
@@ -77,6 +81,7 @@ export default function Navbar() {
                 </InputAdornment>
               ),
             }}
+            onChange={handleNameChange}
             id="demo-helper-text-misaligned-no-helper"
             label="Search"
             placeholder="Enter the name of restaurent"

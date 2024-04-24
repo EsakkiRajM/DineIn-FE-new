@@ -61,8 +61,11 @@ export default function Filter({ filteredTags = [], setFilteredTags }) {
           {cuisniesFilter.map((filter, index) => (
             <FormControlLabel
               key={index}
+              name={filter}
               control={<Checkbox />}
               label={filter}
+              value={filter}
+              onChange={handleFilterChange}
             />
           ))}
         </AccordionDetails>
@@ -79,8 +82,11 @@ export default function Filter({ filteredTags = [], setFilteredTags }) {
           {tagsFilter.map((filter, index) => (
             <FormControlLabel
               key={index}
+              name={filter}
               control={<Checkbox />}
               label={filter}
+              value={filter}
+              onChange={handleFilterChange}
             />
           ))}
         </AccordionDetails>

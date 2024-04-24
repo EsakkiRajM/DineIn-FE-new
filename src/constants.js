@@ -113,7 +113,7 @@ export const restaurant = {
       location: "Karol Bagh, Central Delhi",
       price: "3000",
       priceDetail: "₹ 3,000 for 2 approx",
-      tags: ["American", "Bengali", "5 Star", "Buffet"],
+      tags: ["American", "Bengali", "5 Star", "Buffet", "Bakery"],
       ratings: "8.5",
       image:
         "https://img.freepik.com/free-photo/vertical-shot-traditional-indian-paneer-butter-masala-cheese-cottage-curry-black-surface_181624-32001.jpg?size=626&ext=jpg&ga=GA1.1.51770993.1710842715&semt=sph",

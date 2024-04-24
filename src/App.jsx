@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const BasicPage = () => {
-    console.log(import.meta.env, "process");
     return (
       <Grid item>
         <Navbar />

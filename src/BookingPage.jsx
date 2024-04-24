@@ -20,6 +20,7 @@ function BookingPage() {
   const { location = "Delhi" } = useParams();
 
   const [filteredTags, setFilteredTags] = React.useState([]);
+  const [selectedSort, setSelectedSort] = React.useState("Ratings");
 
   const breadcrumbs = [
     <Grid underline="hover" key="1" color="inherit" href="/" onClick={() => {}}>
@@ -87,6 +88,9 @@ function BookingPage() {
                     id="combo-box-demo"
                     options={sortData}
                     sx={{ width: 150 }}
+                    onChange={(event) => {
+                      setSelectedSort(event.target.innerHTML);
+                    }}
                     renderInput={(params) => (
                       <TextField {...params} label="Sort" />
                     )}
@@ -97,7 +101,11 @@ function BookingPage() {
           </Grid>
         </Grid>
         <Grid item paddingTop={4}>
-          <HotelList location={location} />
+          <HotelList
+            location={location}
+            filteredTags={filteredTags}
+            selectedSort={selectedSort}
+          />
         </Grid>
       </Grid>
     </Grid>

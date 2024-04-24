@@ -49,8 +49,6 @@ export default function BookingModal({
   };
 
   const handleDateChange = async (value) => {
-    console.log(value, "value");
-
     const day = new Date(value).getDate();
     const year = new Date(value).getFullYear();
     const month = new Date(value).getMonth() + 1;
@@ -73,13 +71,6 @@ export default function BookingModal({
   const handleSubmit = async () => {
     const { selectedDate, selectedSeats, selectedTime } = bookingDetails;
 
-    console.log({
-      selectedTime,
-      selectedSeats,
-      selectedDate,
-      username,
-      selectedRestaurentId,
-    });
     if (
       selectedDate?.length &&
       selectedSeats &&
