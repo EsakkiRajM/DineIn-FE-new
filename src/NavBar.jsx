@@ -37,16 +37,6 @@ import {
       })();
     }, []);
   
-    // const hotelNames = restaurant.delhi.map((ele) => {
-    //   return { label: ele.name, id: Math.random() };
-    // });
-    // console.log(hotelNames, "hotelNames");
-  
-    // open -> true / false
-    // open -> 1 / 0
-    // openType -> 2 / 1 / 0
-    // openType -> registration / login / false
-  
     const navigate = useNavigate();
   
     const handleLogout = () => {
@@ -76,8 +66,8 @@ import {
           justifyContent={"center"}
           alignItems={"center"}
         >
-          <Grid item width={75}>
-            <img src="https://www.guvi.in/web-build/images/guvi-logo.8eeef9e2027d374479531095b012a87e.svg" />
+          <Grid className="mt-5" >
+            <img src="/logo.png" style={{width: "70px"}}  />
           </Grid>
           <Grid item>
             <Autocomplete
